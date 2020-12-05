@@ -1,4 +1,5 @@
 ﻿using QuanLyKaraoke.DAO;
+using QuanLyKaraoke.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,9 +23,11 @@ namespace QuanLyKaraoke
         {
             string username = txbLoginName.Text;
             string password = txbPassWord.Text;
+
             if (checkLogin(username,password))
             {
                 QuanLyKaraoke f = new QuanLyKaraoke();
+
                 this.Hide();
                 f.ShowDialog();
                 this.Show();

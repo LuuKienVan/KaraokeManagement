@@ -55,7 +55,7 @@
             this.txbCMND = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lbTenNhanVIen = new System.Windows.Forms.Label();
-            this.tbTenNhanVien = new System.Windows.Forms.TextBox();
+            this.txbTenNhanVien = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbIDNhanVien = new System.Windows.Forms.Label();
             this.txbIDNhanVien = new System.Windows.Forms.TextBox();
@@ -69,6 +69,10 @@
             this.btnSearchPhong = new System.Windows.Forms.Button();
             this.dtgPhong = new System.Windows.Forms.DataGridView();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.txbTinhTrangPhong = new System.Windows.Forms.TextBox();
+            this.lbTinhTrangPhong = new System.Windows.Forms.Label();
+            this.btnViewPhong = new System.Windows.Forms.Button();
             this.btnAddPhong = new System.Windows.Forms.Button();
             this.btnUpdatePhong = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -86,6 +90,7 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.btnViewAccount = new System.Windows.Forms.Button();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.nudAccountType = new System.Windows.Forms.NumericUpDown();
             this.lbAccountType = new System.Windows.Forms.Label();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.btnUpdateAccount = new System.Windows.Forms.Button();
@@ -120,11 +125,6 @@
             this.txbSearchService = new System.Windows.Forms.TextBox();
             this.btnSearchService = new System.Windows.Forms.Button();
             this.tpDoanhThu = new System.Windows.Forms.TabPage();
-            this.nudAccountType = new System.Windows.Forms.NumericUpDown();
-            this.btnViewPhong = new System.Windows.Forms.Button();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.txbTinhTrangPhong = new System.Windows.Forms.TextBox();
-            this.lbTinhTrangPhong = new System.Windows.Forms.Label();
             this.tcQuanLy.SuspendLayout();
             this.tpNhanVien.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -142,12 +142,14 @@
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPhong)).BeginInit();
             this.panel15.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.tpTaiKhoan.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAccountType)).BeginInit();
             this.panel19.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAccount)).BeginInit();
@@ -159,8 +161,6 @@
             this.panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDichVu)).BeginInit();
             this.panel22.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAccountType)).BeginInit();
-            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcQuanLy
@@ -216,6 +216,7 @@
             this.btnViewNhanVien.TabIndex = 11;
             this.btnViewNhanVien.Text = "Xem";
             this.btnViewNhanVien.UseVisualStyleBackColor = true;
+            this.btnViewNhanVien.Click += new System.EventHandler(this.btnViewNhanVien_Click);
             // 
             // btnUpdateNhanVien
             // 
@@ -225,6 +226,7 @@
             this.btnUpdateNhanVien.TabIndex = 10;
             this.btnUpdateNhanVien.Text = "Sửa";
             this.btnUpdateNhanVien.UseVisualStyleBackColor = true;
+            this.btnUpdateNhanVien.Click += new System.EventHandler(this.btnUpdateNhanVien_Click);
             // 
             // btnDeleteNhanVien
             // 
@@ -234,6 +236,7 @@
             this.btnDeleteNhanVien.TabIndex = 9;
             this.btnDeleteNhanVien.Text = "Xóa";
             this.btnDeleteNhanVien.UseVisualStyleBackColor = true;
+            this.btnDeleteNhanVien.Click += new System.EventHandler(this.btnDeleteNhanVien_Click);
             // 
             // btnAddNhanVien
             // 
@@ -243,6 +246,7 @@
             this.btnAddNhanVien.TabIndex = 8;
             this.btnAddNhanVien.Text = "Thêm";
             this.btnAddNhanVien.UseVisualStyleBackColor = true;
+            this.btnAddNhanVien.Click += new System.EventHandler(this.btnAddNhanVien_Click);
             // 
             // panel9
             // 
@@ -403,7 +407,7 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.lbTenNhanVIen);
-            this.panel4.Controls.Add(this.tbTenNhanVien);
+            this.panel4.Controls.Add(this.txbTenNhanVien);
             this.panel4.Location = new System.Drawing.Point(3, 35);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(336, 29);
@@ -419,12 +423,12 @@
             this.lbTenNhanVIen.TabIndex = 2;
             this.lbTenNhanVIen.Text = "Tên:";
             // 
-            // tbTenNhanVien
+            // txbTenNhanVien
             // 
-            this.tbTenNhanVien.Location = new System.Drawing.Point(67, 3);
-            this.tbTenNhanVien.Name = "tbTenNhanVien";
-            this.tbTenNhanVien.Size = new System.Drawing.Size(266, 20);
-            this.tbTenNhanVien.TabIndex = 1;
+            this.txbTenNhanVien.Location = new System.Drawing.Point(67, 3);
+            this.txbTenNhanVien.Name = "txbTenNhanVien";
+            this.txbTenNhanVien.Size = new System.Drawing.Size(266, 20);
+            this.txbTenNhanVien.TabIndex = 1;
             // 
             // panel3
             // 
@@ -449,6 +453,7 @@
             // 
             this.txbIDNhanVien.Location = new System.Drawing.Point(67, 3);
             this.txbIDNhanVien.Name = "txbIDNhanVien";
+            this.txbIDNhanVien.ReadOnly = true;
             this.txbIDNhanVien.Size = new System.Drawing.Size(266, 20);
             this.txbIDNhanVien.TabIndex = 1;
             // 
@@ -545,6 +550,44 @@
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(342, 363);
             this.panel15.TabIndex = 12;
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.txbTinhTrangPhong);
+            this.panel18.Controls.Add(this.lbTinhTrangPhong);
+            this.panel18.Location = new System.Drawing.Point(6, 95);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(333, 38);
+            this.panel18.TabIndex = 13;
+            // 
+            // txbTinhTrangPhong
+            // 
+            this.txbTinhTrangPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbTinhTrangPhong.Location = new System.Drawing.Point(132, 7);
+            this.txbTinhTrangPhong.Name = "txbTinhTrangPhong";
+            this.txbTinhTrangPhong.Size = new System.Drawing.Size(198, 21);
+            this.txbTinhTrangPhong.TabIndex = 1;
+            // 
+            // lbTinhTrangPhong
+            // 
+            this.lbTinhTrangPhong.AutoSize = true;
+            this.lbTinhTrangPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTinhTrangPhong.Location = new System.Drawing.Point(3, 7);
+            this.lbTinhTrangPhong.Name = "lbTinhTrangPhong";
+            this.lbTinhTrangPhong.Size = new System.Drawing.Size(95, 20);
+            this.lbTinhTrangPhong.TabIndex = 0;
+            this.lbTinhTrangPhong.Text = "Tình trạng:";
+            this.lbTinhTrangPhong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnViewPhong
+            // 
+            this.btnViewPhong.Location = new System.Drawing.Point(199, 305);
+            this.btnViewPhong.Name = "btnViewPhong";
+            this.btnViewPhong.Size = new System.Drawing.Size(92, 46);
+            this.btnViewPhong.TabIndex = 12;
+            this.btnViewPhong.Text = "Xem";
+            this.btnViewPhong.UseVisualStyleBackColor = true;
+            this.btnViewPhong.Click += new System.EventHandler(this.btnViewRoom_Click);
             // 
             // btnAddPhong
             // 
@@ -716,6 +759,18 @@
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(333, 38);
             this.panel21.TabIndex = 12;
+            // 
+            // nudAccountType
+            // 
+            this.nudAccountType.Location = new System.Drawing.Point(132, 7);
+            this.nudAccountType.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudAccountType.Name = "nudAccountType";
+            this.nudAccountType.Size = new System.Drawing.Size(120, 20);
+            this.nudAccountType.TabIndex = 1;
             // 
             // lbAccountType
             // 
@@ -1047,56 +1102,6 @@
             this.tpDoanhThu.Text = "Doanh thu";
             this.tpDoanhThu.UseVisualStyleBackColor = true;
             // 
-            // nudAccountType
-            // 
-            this.nudAccountType.Location = new System.Drawing.Point(132, 7);
-            this.nudAccountType.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudAccountType.Name = "nudAccountType";
-            this.nudAccountType.Size = new System.Drawing.Size(120, 20);
-            this.nudAccountType.TabIndex = 1;
-            // 
-            // btnViewPhong
-            // 
-            this.btnViewPhong.Location = new System.Drawing.Point(199, 305);
-            this.btnViewPhong.Name = "btnViewPhong";
-            this.btnViewPhong.Size = new System.Drawing.Size(92, 46);
-            this.btnViewPhong.TabIndex = 12;
-            this.btnViewPhong.Text = "Xem";
-            this.btnViewPhong.UseVisualStyleBackColor = true;
-            this.btnViewPhong.Click += new System.EventHandler(this.btnViewRoom_Click);
-            // 
-            // panel18
-            // 
-            this.panel18.Controls.Add(this.txbTinhTrangPhong);
-            this.panel18.Controls.Add(this.lbTinhTrangPhong);
-            this.panel18.Location = new System.Drawing.Point(6, 95);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(333, 38);
-            this.panel18.TabIndex = 13;
-            // 
-            // txbTinhTrangPhong
-            // 
-            this.txbTinhTrangPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTinhTrangPhong.Location = new System.Drawing.Point(132, 7);
-            this.txbTinhTrangPhong.Name = "txbTinhTrangPhong";
-            this.txbTinhTrangPhong.Size = new System.Drawing.Size(198, 21);
-            this.txbTinhTrangPhong.TabIndex = 1;
-            // 
-            // lbTinhTrangPhong
-            // 
-            this.lbTinhTrangPhong.AutoSize = true;
-            this.lbTinhTrangPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTinhTrangPhong.Location = new System.Drawing.Point(3, 7);
-            this.lbTinhTrangPhong.Name = "lbTinhTrangPhong";
-            this.lbTinhTrangPhong.Size = new System.Drawing.Size(95, 20);
-            this.lbTinhTrangPhong.TabIndex = 0;
-            this.lbTinhTrangPhong.Text = "Tình trạng:";
-            this.lbTinhTrangPhong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // QuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1133,6 +1138,8 @@
             this.panel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPhong)).EndInit();
             this.panel15.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
             this.panel13.ResumeLayout(false);
@@ -1143,6 +1150,7 @@
             this.panel17.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.panel21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAccountType)).EndInit();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             this.panel20.ResumeLayout(false);
@@ -1161,9 +1169,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgDichVu)).EndInit();
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAccountType)).EndInit();
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1199,7 +1204,7 @@
         private System.Windows.Forms.TextBox txbCMND;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lbTenNhanVIen;
-        private System.Windows.Forms.TextBox tbTenNhanVien;
+        private System.Windows.Forms.TextBox txbTenNhanVien;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbIDNhanVien;
         private System.Windows.Forms.TextBox txbIDNhanVien;

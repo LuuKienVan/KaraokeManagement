@@ -17,6 +17,7 @@ namespace QuanLyKaraoke
         BindingSource serviceList = new BindingSource();
         BindingSource accountList = new BindingSource();
         BindingSource roomList = new BindingSource();
+        BindingSource employeeList = new BindingSource();
 
         public QuanLy()
         {
@@ -24,12 +25,15 @@ namespace QuanLyKaraoke
             dtgDichVu.DataSource = serviceList;
             dtgAccount.DataSource = accountList;
             dtgPhong.DataSource = roomList;
+            dtgNhanVien.DataSource = employeeList;
             LoadServiceList();
             ServiceBinding();
             LoadAccountList();
             AccountBinding();
             LoadRoomList();
             RoomBinding();
+            LoadEmployeeList();
+            EmployeeBinding();
         }
 
         #region Events
@@ -219,6 +223,71 @@ namespace QuanLyKaraoke
         {
             LoadRoomList();
         }
+
+        private void btnAddNhanVien_Click(object sender, EventArgs e)
+        {
+            string name = txbTenNhanVien.Text;
+            DateTime? date = dtpNgaySinh.Value;
+            int gender = Convert.ToInt32(txbGioiTinh.Text);
+            string idNum = txbCMND.Text;
+            string phoneNum = txbSDT.Text;
+            string address = txbDiaChi.Text;
+            string email = txbEmail.Text;
+
+            if (EmployeeDAO.Instance.InsertEmployee(name,date,gender,idNum,phoneNum,address,email))
+            {
+                MessageBox.Show("Thêm nhân viên thành công.");
+            }
+            else
+            {
+                MessageBox.Show("Thêm nhân viên thất bại.");
+            }
+
+            LoadEmployeeList();
+        }
+        private void btnUpdateNhanVien_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbIDNhanVien.Text);
+            string name = txbTenNhanVien.Text;
+            DateTime? date = dtpNgaySinh.Value;
+            int gender = Convert.ToInt32(txbGioiTinh.Text);
+            string idNum = txbCMND.Text;
+            string phoneNum = txbSDT.Text;
+            string address = txbDiaChi.Text;
+            string email = txbEmail.Text;
+
+            if (EmployeeDAO.Instance.UpdateEmployee(id, name, date, gender, idNum, phoneNum, address, email))
+            {
+                MessageBox.Show("Cập nhật nhân viên thành công.");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật nhân viên thất bại.");
+            }
+
+            LoadEmployeeList();
+        }
+
+        private void btnDeleteNhanVien_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txbIDNhanVien.Text);
+
+            if (EmployeeDAO.Instance.DeleteEmployee(id))
+            {
+                MessageBox.Show("Xóa nhân viên thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa nhân viên thất bại");
+            }
+
+            LoadEmployeeList();
+        }
+
+        private void btnViewNhanVien_Click(object sender, EventArgs e)
+        {
+            LoadEmployeeList();
+        }
         #endregion
 
         #region Methods
@@ -244,6 +313,18 @@ namespace QuanLyKaraoke
             txbLoaiPhong.DataBindings.Add(new Binding("Text", dtgPhong.DataSource, "LOAIPHONG", true, DataSourceUpdateMode.Never));
         }
 
+        void EmployeeBinding()
+        {
+            txbIDNhanVien.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "ID_NHANVIEN", true, DataSourceUpdateMode.Never));
+            txbTenNhanVien.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "HOTEN", true, DataSourceUpdateMode.Never));
+            dtpNgaySinh.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "NGAYSINH", true, DataSourceUpdateMode.Never));
+            txbGioiTinh.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "GIOITINH", true, DataSourceUpdateMode.Never));
+            txbCMND.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "CMND", true, DataSourceUpdateMode.Never));
+            txbSDT.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "SDT", true, DataSourceUpdateMode.Never));
+            txbDiaChi.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "DIACHI", true, DataSourceUpdateMode.Never));
+            txbEmail.DataBindings.Add(new Binding("Text", dtgNhanVien.DataSource, "EMAIL", true, DataSourceUpdateMode.Never));
+        }
+
         DataTable SearchServiceByName(string name)
         {
             DataTable dt = new DataTable();
@@ -262,11 +343,16 @@ namespace QuanLyKaraoke
         {
             accountList.DataSource = AccountDAO.Instance.GetAccountList();
         }
-        #endregion
 
         void LoadRoomList()
         {
             roomList.DataSource = RoomDAO.Instance.GetRoomList();
         }
+
+        void LoadEmployeeList()
+        {
+            employeeList.DataSource = EmployeeDAO.Instance.GetEmployeeList();
+        }
+        #endregion
     }
 }

@@ -18,13 +18,29 @@ namespace QuanLyKaraoke.DAO
 
         private AccountDAO() { }
 
-        public bool checkLogin(string useName, string password)
+        public bool checkLogin(string userName, string password)
         {
             string query = "UserLogin @TEN_TAIKHOAN , @MATKHAU";
 
-            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]{useName, password});
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]{userName, password});
 
             return result.Rows.Count > 0;
+        }
+
+        public bool checkAccountType(string userName)
+        {
+            string query = string.Format("select LOAITAIKHOAN from TAIKHOAN where TEN_TAIKHOAN = '{0}'",userName);
+
+            DataTable result = DataProvider.Instance.ExecuteQuery(query);
+
+            if (result.Rows.Contains(0))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public DataTable GetAccountList()
